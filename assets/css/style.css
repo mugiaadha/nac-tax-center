@@ -2002,6 +2002,14 @@ section {
   color: #0054a7;
 }
 
+.Module .sidebar .categories ul a.active {
+  color: #0054a7;
+}
+
+.Module .sidebar .categories ul a.deactive {
+  color: #b4aca8;
+}
+
 .Module .sidebar .categories ul a span {
   padding-left: 5px;
   color: #b4aca8;
@@ -2030,6 +2038,14 @@ section {
 
 .Module .sidebar .recent-posts h4 a:hover {
   color: #0054a7;
+}
+
+.Module .sidebar .recent-posts h4 a.active {
+  color: #0054a7;
+}
+
+.Module .sidebar .recent-posts h4 a.deactive {
+  color: #b4aca8;
 }
 
 .Module .sidebar .recent-posts time {
