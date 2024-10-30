@@ -2249,3 +2249,22 @@ section {
   color: #fff;
   text-decoration: none;
 }
+
+.card {
+  border: none;
+  background-color: #ffffff;
+  border-radius: 10px;
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.icon {
+  color: #0054a7;
+}
+
+.text-primary { 
+  color: #0054a7 !important;
+}
