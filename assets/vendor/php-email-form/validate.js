@@ -50,30 +50,39 @@
   });
 
   function php_email_form_submit(thisForm, action, formData) {
+    const params = new FormData(thisForm);
+    // code fragment
+    var data = {
+      service_id: 'service_lw0yq4k',
+      user_id: 'sTfb0aj_ywuEjkdXj',
+      template_id: 'template_16v0kwg',
+      template_params: {
+        to_name: "NAC Tax Center",
+        from_name: document.getElementById('name').value,
+        message: document.getElementById('message').value,
+        reply_to: document.getElementById('email').value
+      }
+    };
+    // code fragment
+
     fetch(action, {
       method: 'POST',
-      body: formData,
-      headers: {'X-Requested-With': 'XMLHttpRequest'}
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
     })
     .then(response => {
-      if( response.ok ) {
-        return response.text();
-      } else {
-        throw new Error(`${response.status} ${response.statusText} ${response.url}`); 
-      }
-    })
-    .then(data => {
-      thisForm.querySelector('.loading').classList.remove('d-block');
-      if (data.trim() == 'OK') {
+      if (response.ok) {
+        thisForm.querySelector('.loading').classList.remove('d-block');
         thisForm.querySelector('.sent-message').classList.add('d-block');
-        thisForm.reset(); 
       } else {
-        throw new Error(data ? data : 'Form submission failed and no error message returned from: ' + action); 
+        return response.json().then(error => {
+          displayError(thisForm, 'Oops... ' + JSON.stringify(error))
+        });
       }
     })
-    .catch((error) => {
-      displayError(thisForm, error);
-    });
+    .catch(error => alert(error.message));
   }
 
   function displayError(thisForm, error) {
