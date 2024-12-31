@@ -48,7 +48,21 @@
 
 
 <script>
-  document.getElementById('body').style.color = 'red'
+  const params = new URLSearchParams(window.location.search);
+  let time = 0
+  let color = 'red'
+  let min = parseInt(params.get('min'))
+  let max = parseInt(params.get('max'))
+  function loop() {
+    setTimeout(() => {
+      time = Math.round(Math.random()*(max-min))+min
+      color = color == 'red' ? 'green' : 'red'
+      console.log(time)
+      document.getElementById('body').style.background = color
+      loop()
+    }, time*1000)
+  }
+  loop()
 </script>
 
 </html>
